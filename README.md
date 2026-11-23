@@ -18,3 +18,9 @@ Intro (german version):
 > 
 > Eine Smartphone-App könnte einen Kommunikationskanal sicherstellen, selbst wenn die Arztpraxis von einer Überschwemmung betroffen ist und alle Computer ausgefallen sind. Eine Umfragefunktion würde die Möglichkeit bieten, ad-hoc-Daten zu sammeln, die in Krisensituationen benötigt werden (z.B. benötigte medizinische Produkte / Materialien, verfügbare Geräte / Ressourcen usw.).
 
+## Documentation
+
+* [Hackathon Timetable](docs/Hackathon-Timetable.md)
+* [How to contribute](CONTRIBUTING.md)
+* [Setup Development](DEVELOPMENT.md)
+* [Testdata](docs/Testdata.md)
