@@ -15,7 +15,7 @@ What we need (from https://ionicframework.com/docs/intro/environment):
 
 ### Visual Studio Code
 
-TODO
+[Download and Install](https://code.visualstudio.com/download)
 
 ### Git
 
@@ -41,7 +41,7 @@ Clone repository:
 
 ```shell
 cd projects
-git clone https://bitbucket.kvb.internal/scm/~eichira/hackathon-2026.git
+git clone https://github.com/kvbayerns/healthcare-hackathon-bayern-2026.git
 ```
 
 ### Java Development Kit (JDK)
@@ -212,7 +212,7 @@ For new Ionic projects, Capacitor is already installed in new Ionic apps by defa
 Create an Ionic Angular project skeleton (from https://ionicframework.com/docs/angular/quickstart):
 
 ```shell
-> cd hackathon-2026
+> cd healthcare-hackathon-bayern-2026
 
 > ionic start app blank --type angular
 ? Would you like to build your app with Standalone Components or NgModules?
@@ -221,7 +221,7 @@ Create an Ionic Angular project skeleton (from https://ionicframework.com/docs/a
  https://angular.dev/guide/components
 
  Standalone
-[INFO] Existing git project found (C:/Laufwerk_D/projects/hackathon-2026). Git operations are disabled.
+[INFO] Existing git project found (C:/Laufwerk_D/projects/healthcare-hackathon-bayern-2026). Git operations are disabled.
 √ Preparing directory .\app in 1.32ms
 √ Downloading and extracting blank starter in 3.69s
 > ionic integrations enable capacitor --quiet -- app io.ionic.starter
