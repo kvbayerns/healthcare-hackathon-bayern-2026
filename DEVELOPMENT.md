@@ -81,14 +81,12 @@ Available packages:
   ...
 ```
 
-Install the platform of your target device, e.g. Android 16 (API Level 36) (see https://developer.android.com/tools/releases/platforms):
+Install the platform of your target device, e.g. Android 16 (API Level 37) (see https://developer.android.com/tools/releases/platforms):
 
 ```shell
-# Example: Installing SDK packages for API Level 36 (Android 16)
-.\android sdk install "platform-tools" "platforms;android-36" "build-tools;36.0.0" "system-images;android-36;google_apis;x86_64"
-https://dl.google.com/android/repository/platform-tools_r37.0.0-win.zip [###############] 100% (7.7 MB/7.7 MB) ETA: 0s
-https://dl.google.com/android/repository/sys-img/google_apis/x86_64-36_r07.zip [##########] 100% (1.8 GB/1.8 GB) ETA: 0s
-https://dl.google.com/android/repository/emulator-windows_x64-15507667.zip [##########] 100% (399.1 MB/399.1 MB) ETA: 0s
+# Example: Installing SDK packages for API Level 37 (Android 16)
+
+.\android sdk install "platform-tools" "platforms;android-37.2" "build-tools;37.0.0" "system-images;android-37.2;google_apis_ps16k;x86_64"
 ```
 
 List installed SDK:
@@ -103,12 +101,12 @@ Installed packages:
   system-images/android-36/google_apis/x86_64         7.0.0       Google APIs Intel x86_64 Atom System Image
 ```
 
-All SDKs are installed into `C:\Users\<your-username>\AppData\Local\Android\Sdk`.
+All SDKs are installed into `C:\Users\<your-username>\AppData\Local\Android\Sdk` or `C:\Users\<your-username>\DEV\android_sdk`
 
 #### Configuration
 
 * Set user environment variables:
-  * `ANDROID_HOME` (the path to the SDK installation directory) to `C:\Users\eichira\AppData\Local\Android\Sdk`
+  * `ANDROID_HOME` (the path to the SDK installation directory) to `C:\Users\eichira\AppData\Local\Android\Sdk` (or `C:\Users\<your-username>\DEV\android_sdk`)
   * `PATH`: add 
 * Add to environment variable PATH: `%ANDROID_HOME%\platform-tools`
 
@@ -349,4 +347,51 @@ If you prefer USB installation from the computer, connect the phone with USB deb
 
 ```shell
 adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Troubleshooting
+
+### How to Unblock android.exe or use sdkmanager
+
+Problem:
+
+"Error occurred during initialization of VM
+Unable to load native library: Eine Anwendungssteuerungsrichtlinie hat diese Datei blockiert"
+
+Solution:
+
+Option 1: Turn off Smart App Control (Personal PC)
+
+* Press Win + I to open Settings.
+* Go to Privacy & security > Windows Security > App & browser control.
+* Click Smart App Control settings and switch it to Off.
+
+Option 2: Keep Using sdkmanager.bat (No Security Changes)
+
+```
+cd ~\DEV\android_sdk\cmdline-tools\latest\bin
+.\sdkmanager.bat --update
+.\sdkmanager.bat --list
+.\sdkmanager.bat --install "platform-tools" "platforms;android-37.2" "build-tools;37.0.0" "system-images;android-37.2;google_apis_ps16k;x86_64"
+.\sdkmanager.bat --list_installed
+```
+
+If you prefer to leave Smart App Control enabled, you can continue using .\sdkmanager.bat for installing and updating SDK packages. Despite the deprecation and JDK 25 warnings, it runs cleanly through your signed Temurin JDK.
+
+## Gradle 8 conflicts with Java 25
+
+Problem:
+
+Solution:
+
+Upgrade to Gradle 9 and Capacitor 9:
+
+```
+cd app
+npm install -D @capacitor/cli@next
+npm install @capacitor/core@next @capacitor/android@next @capacitor/app@next @capacitor/haptics@next @capacitor/keyboard@next @capacitor/status-bar@next
+npx cap migrate
+Remove-Item -Recurse -Force android
+npx cap add android
+npx cap sync android
 ```
